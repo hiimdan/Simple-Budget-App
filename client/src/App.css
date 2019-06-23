@@ -1,0 +1,1194 @@
+/*Global*/
+body, html {
+  height: 100%;
+}
+
+#root {
+  min-height: 100%;
+  position: relative;
+  --mobile-nav-offset: 44px;
+  --desktop-nav-offset: 54px;
+}
+
+input[type="date"] {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Navigation */
+nav {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  width: 100%;
+  border-bottom: 1px solid black;
+  background: #43bdff;
+  position: fixed;
+  z-index: 2;
+}
+
+#nav_menu {
+  display: none;
+}
+
+.navLinks {
+  padding: 0;
+  margin: 0;
+}
+
+.navLinks li {
+  list-style: none;
+  display: inline-block;
+}
+
+.navLinks a {
+  text-decoration: none;
+  font-weight: 600;
+  color: black;
+  padding: 16px 6px;
+  display: inline-block;
+  transition: background 130ms color 130ms;
+}
+
+.navLinks a:hover {
+  background: #f7f7f7;
+}
+
+.purpleNav .navLinks a, .darkNav .navLinks a {
+  color: white;
+}
+
+.purpleNav .navLinks a:hover, .darkNav .navLinks a:hover {
+  color: black;
+}
+
+.notAuth a {
+  padding: 16px 0;
+  width: 70px;
+  text-align: center;
+}
+
+#logoutbutton a {
+  padding: 16px 11px;
+}
+
+#logout_icon {
+  display: none;
+}
+
+.navShrink {
+  display: none;
+}
+
+/* Container */
+.main_container {
+  padding: var(--desktop-nav-offset) 6px 0 6px;
+  min-height: calc(100vh - var(--desktop-nav-offset));
+}
+
+
+#dash_container {
+  padding-bottom: 95px;
+}
+
+/*Validation Forms*/
+.auth_form {
+  margin: 80px auto 0 auto;
+  max-width: 300px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+  background: white;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.auth_form div {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 1px solid black;
+  padding: 5px 0;
+  background: #c9d8fd42;
+}
+
+.auth_form button {
+  display: block;
+  margin: 11px auto 4px auto;
+  width: 85px;
+  height: 28px;
+  font-weight: bold;
+  background: #45cbe8;
+  border-radius: 4px;
+  border: 1px solid #d2e5f7;
+  transition: background 170ms;
+  cursor: pointer;
+}
+
+.auth_form button:hover {
+  background: #72e1f9;
+}
+
+.auth_form form {
+  width: 180px;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+
+.auth_form input {
+  margin: 5px 0;
+  height: 24px;
+  width: 180px;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  padding-left: 2px;
+}
+
+.auth_form label {
+  font-weight: 600;
+}
+
+.err_label {
+  color: red;
+  font-size: 12px;
+  text-align: center;
+  display: block;
+}
+
+/* Dashboard */
+
+h1.greeting {
+  text-align: center;
+  margin-top: 0;
+  padding-top: 18px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 2.2em; 
+}
+
+.btn_row {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.action_btn_container {
+  width: 160px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.dash_btn {
+  height: 27px;
+  width: 70px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.dash_btn::after {
+  content: '';
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  transition: opacity 100ms ease-in;
+}
+
+.dash_btn:hover::after {
+  opacity: .1;
+}
+
+.button_actions_container {
+  width: 160px;
+  height: 54px;
+  position: absolute;
+  top: -55px;
+  overflow: hidden;
+  
+}
+
+.button_actions {
+  position: relative;
+  top: 54px;
+  transition: top 300ms ease;
+  text-align: center;
+}
+
+.action {
+  border: 1px solid black;
+  border-radius: 6px;
+  width: 95%;
+  margin: 0 auto 4px auto;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 200ms, background 170ms border 170ms;
+  background: #f9fcfc;
+}
+
+.action:hover {
+  background: #f3f3f3;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.move_up {
+  top: 0;
+}
+
+.move_up .action {
+  opacity: 1;
+}
+
+.dash_toggle_container {
+  max-width: 100px;
+  margin: 10px auto;
+  display: flex;
+}
+
+.toggleDiv {
+  width: 45px;
+  margin-left: 3px;
+  text-align: center;
+  padding: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  font-weight: 600;
+  border: 1px solid #43bdff;
+  transition: background 300ms;
+}
+
+.toggleDiv::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: background 100ms;
+}
+
+.toggleDiv:hover::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.totalBudget {
+  text-align: center;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 1.3em;
+  font-family: 'Source Sans Pro', sans-serif; 
+}
+
+/* dashboard transaction/budget box */
+.modal_div {
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal_div :not(.create_popup), :not(.create_popup *) {
+  filter: blur(3px);
+}
+
+.modal_div, .modal_div * {
+  animation-name: fade-in;
+  animation-duration: 100ms;
+  animation-timing-function: ease-in;
+}
+
+.close_icon button {
+  position: absolute;
+  right: 6px;
+  top: 5px;
+  color: rgba(0, 0, 0, 0.57);
+  font-size: 16px;
+  width: 10px;
+  cursor: pointer;
+}
+
+.close_icon:hover button {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#closeDialog {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+
+.create_popup {
+  max-width: 400px;
+  margin: 40px auto;
+  background: white;
+  border: 1px solid black;;
+  position: relative;
+  top: -100px;
+}
+
+.create_popup ,.create_popup div {
+  filter: blur(0px);
+}
+
+.create_popup p {
+  text-align: center;
+  padding: 5px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.form_container {
+  padding: 0 60px 20px 60px;
+}
+
+.form_container form {
+  max-width: 230px;
+  margin: 0 auto;
+}
+
+.form_group {
+  margin-bottom: 10px;
+}
+
+
+.modal_input {
+  margin-top: 7px;
+  width: 230px;
+  height: 26px;
+  box-sizing: border-box;
+}
+
+.dollar_input {
+  padding-left: 2px;
+}
+
+.form_group select {
+  height: 27px;
+}
+
+.form_container button {
+  display: block;
+  margin: 20px auto;
+  height: 30px;
+  border-radius: 5px;
+  background: #59bcff;
+  font-weight: bold;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  transition: background 120ms;
+  cursor: pointer;
+}
+
+.form_container button:hover {
+  background: #8bcaf4;
+}
+
+.popup_error {
+  color: red;
+  font-size: 13px;
+  text-align: center;
+}
+
+.success {
+  text-align: center;
+  animation-name: color-transition;
+  animation-duration: 220ms;
+  animation-fill-mode: forwards;
+}
+
+/* Budget component */
+.budget_container {
+  margin-top: 20px;
+}
+
+.budget_component {
+  width: 350px;
+  border: 1px solid black;
+  margin: 10px auto;
+  border-radius: 4px;
+  background: white;
+}
+
+.budget_label {
+  padding: 3px;
+  border-bottom: 1px solid black;
+  font-weight: 600;
+}
+
+.budget_component button {
+  float: right;
+  margin-top: 2px;
+  padding: 0;
+  visibility: hidden;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.budget_label:hover button, .budget_label:focus-within button {
+  visibility: visible;
+}
+
+
+.bar_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+}
+
+.bar {
+  margin: 0 5px;
+  width: 80%;
+  height: 25px;
+  border: 1px solid black;
+  background: #f9f9f9;
+}
+
+.bar_ind {
+  height: 100%;
+}
+
+.description {
+  padding-bottom: 7px;
+  font-weight: 600;
+}
+
+.dollar_amount {
+  font-weight: 600;
+}
+
+/* Budget Edit */
+.budget_edit {
+  max-width: 300px;
+  width: 95%;
+  position: absolute;
+  background: white;
+  padding: 6px 7px;
+  top: 140px;
+  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.budget_edit form {
+  margin-top: 10px;
+}
+
+.budget_edit input {
+  margin: 0 7px;
+  padding-left: 2px;
+}
+
+.budget_edit button {
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  transition: background 150ms;
+}
+
+.save {
+  background: rgb(67, 189, 255);
+  height: 23px;
+}
+
+.save:hover {
+  background: rgb(138, 213, 253);
+}
+
+.delete_budget {
+  display: block;
+  width: 120px;
+  height: 25px;
+  margin: 10px auto 3px auto;
+}
+
+.delete_message {
+  text-align: center;
+  color: red;
+}
+
+/* Pie Component*/
+.pie_container {
+  margin: 30px auto 0 auto;
+  text-align: center;
+}
+
+
+.pie_container g {
+  stroke: white;
+}
+
+.pie_container g:hover {
+  stroke: rgba(12, 12, 12, 0.096);
+}
+
+.pie_container g.pieDark {
+  stroke: black;
+}
+
+.pie_container g.pieDark:hover {
+  stroke: rgba(46, 46, 46, 0.329);
+}
+
+.hover_div {
+  position: absolute;
+  padding: 5px;
+  background: white;
+  border: 1px solid black;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+  text-align: left;
+}
+
+.hover_div p {
+  margin: 3px 0 3px 0;
+}
+
+.pie_labels {
+  width: 300px;
+  margin: 10px auto 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(5, auto);
+  grid-auto-flow: column;
+  text-align: left;
+}
+
+.label_color {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+/*Loading page*/
+
+.loading_container {
+  height: calc(100vh - 54px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle_box {
+  width: 100px;
+}
+
+.loadingcircle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: spin;
+  animation-duration: 400ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.circle_box p {
+  text-align: center;
+  margin-top: 2px;
+  margin-left: 8px;
+}
+
+
+/* Transactions */
+
+.transactions_container {
+  width: 85%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px 5px;  
+}
+
+.historyGroup {
+  margin-bottom: 7px;
+}
+
+.historyDisplay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  background: #5194ff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.expandIcon {
+  transition: transform 120ms;
+  margin-right: 2px;
+}
+
+.list_transactions {
+  width: 95%;
+  margin: 1px auto;
+  padding: 0 1px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  overflow: hidden;
+  transition: height 300ms;
+  background: white;  
+}
+
+.history_item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: 3px;
+}
+
+.tDescription {
+  display: flex;
+  font-weight: bold;
+}
+
+.tDate {
+  width: 100px;
+}
+
+.tAmount {
+  width: 50px;
+}
+
+.tEdit {
+  width: 40px;
+  padding-left: 3px;
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+  background: white;
+  color: black;
+}
+
+.tEdit div {
+  margin-right: 7%;
+  display: inline-block;
+}
+
+.tEdit button {
+  font-size: 15.5px;
+  background: transparent;
+  border: none;
+  position: relative;
+  top: -1px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.history_item:hover .tEdit, .history_item:focus-within .tEdit {
+  visibility: visible;
+}
+
+.fa-window-close {
+  color: #af0e0e;
+}
+
+/* Delete Transaction */
+
+.light_modal {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.close_box {
+  width: 250px;
+  margin: 0 auto;
+  animation-name: drop-down;
+  animation-duration: 190ms;
+  animation-fill-mode: forwards;
+  position: absolute;
+  background: white;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.close_box button {
+  margin-left: 8px;
+  margin-top: 11px;
+  border-radius: 4px; 
+  width: 60px;
+  height: 26px; 
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 100ms;
+  font-weight: bold;
+  color: black;
+}
+
+.cancelDelete {
+  background: #5194ff;
+}
+
+.cancelDelete:hover {
+  background: #51B0ff;
+}
+
+.delete_button {
+  background: #f73333;
+}
+
+.delete_button:hover {
+  background: #f05d50;
+}
+
+/* Settings */
+.settings_container {
+  width: 80%;
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 20px 20px 10px 20px;
+}
+
+.settings_section {
+  padding: 0 20px 20px 20px;
+  border-radius: 5px;
+  box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+  background: white;
+}
+
+.settings_content {
+  padding-left: 10px;
+  display: flex;
+}
+
+.message_handling {
+  display: flex;
+  padding-top: 7px;
+  justify-content: center;
+  margin-left: 30px;
+}
+
+.change_password .message_handling {
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 34px;
+}
+
+.settings_heading {
+  margin-top: 0;
+  padding-top: 18px;
+}
+
+.theme_choices {
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+}
+
+.box_outline {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #0000008c;
+}
+
+.theme_select {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #48c8da;
+}
+
+.box_outline:hover {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.color_slice {
+  width: 0;
+  height: 0;
+  float: right;
+  cursor: pointer;
+}
+
+.save_settings {
+  width: 180px;
+  padding-top: 15px;
+}
+
+.save_settings button {
+  width: 50px;
+  display: block;
+  margin-bottom: 4px;
+  background: #59bcff;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  padding: 3px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.save_settings button::after, .delete_account button::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  opacity: 0;
+}
+
+.save_settings button:hover::after {
+  opacity: .13;
+}
+
+
+.delete_account button {
+  padding: 3px 6px;
+  border-radius: 3px;
+  background: #ff4f4ffa;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+}
+
+.delete_account button:hover::after {
+  opacity: .05;
+}
+
+.delete_prompt {
+  box-sizing: border-box;
+  width: 95%;
+  max-width: 310px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border: 1px solid black;
+  background: white;
+  position: absolute;
+  animation-name: drop-down;
+  animation-duration: 165ms;
+  animation-fill-mode: forwards;
+}
+
+.delete_prompt > div {
+  display: flex;
+  justify-content: center;
+}
+
+.delete_prompt p {
+  text-align: center;
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.delete_prompt form {
+  margin: 10px auto 15px auto;
+}
+
+.delete_prompt input {
+    padding: 1px 2px;
+    margin-left: 10px;
+}
+
+.delete_prompt .popup_error {
+  margin-top: 4px;
+}
+
+.delete_prompt button {
+  margin: 0 4px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  padding: 4px 5px;
+  position: relative;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.delete_prompt button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  opacity: 0;
+  left: 0;
+  top: 0;
+}
+
+.delete_prompt button:hover::after {
+  opacity: .09;
+}
+
+#cancelDeleteAccount {
+  background: #6dbcf1;
+}
+
+#confirmDeleteAccount {
+  background: #ff4f4ffa;
+}
+
+/* Not Found */
+.not_found_header {
+  text-align: center;
+  margin-bottom: 27px;
+}
+
+.image_container {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.image_container img {
+  width: 100%;
+  height: auto;
+}
+
+
+@keyframes drop-down {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 80px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: .6;
+  }
+}
+
+@keyframes color-transition {
+  0% {
+    color: black;
+  }
+  100% {
+    color: green;
+  }
+}
+
+
+@media only screen and (max-width: 520px) {
+  .navLinks a {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .navShrink {
+    display: block;
+  }
+
+  .username {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  .navShrink {
+    font-size: 13px;
+  }
+
+  .auth a {
+    font-size: 12px;
+    padding: 16px 3px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .main_container {
+    top: var(--mobile-nav-offset);
+  }
+
+  /* Navigation */
+  nav {
+    padding: 7px 9px;
+  }
+
+  .nav_auth {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  #nav_menu {
+    display: block;
+    font-size: 20px;
+    outline: none;
+  }
+
+  #logoutbutton {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid black;
+    font-size: 0.9em;
+  }
+
+  #logout_icon {
+    display: inline-block;
+    margin-right: 5px;
+  }
+
+  .auth a {
+    width: 100%;
+    padding: 7px 0;
+    font-size: 1.2em;
+  }
+
+  .notAuth a {
+    padding: 0 0;
+    width: 50px
+  }
+
+  .purpleNav .auth a {
+    color: black;
+  }
+
+  .minimized {
+    box-sizing: border-box;
+    position: absolute;
+    left: -220px;
+    top: var(--mobile-nav-offset);
+    border-right: 1px solid black;
+    height: calc(100vh - var(--mobile-nav-offset));
+    text-align: center;
+    width: 220px;
+    transition: left 300ms;
+    background: white;
+    z-index: 1001;
+  }
+
+  .darkNav {
+    background: rgb(63, 63, 64);
+  }
+
+  .expanded {
+    left: 0;
+    box-shadow: 3px 2px 2px rgba(0, 0, 0, 0.1);
+  }
+
+ .auth li {
+    display: block;
+  }
+
+  .username {
+    line-height: 29px;
+    display: block;
+  }
+
+  .navShrink {
+    display: none;
+  }
+
+  #logoutbutton a {
+    padding: 7px 0;
+  }
+
+  /* Dashboard */
+  h1.greeting {
+    font-size: 1.875em;
+    padding-top: 13px;
+  }
+
+  /* Transaction/budget box */
+  .form_container {
+    padding: 0px 13% 10px 13%;
+  }
+
+  .create_popup {
+    top: initial;
+    width: 96%;
+  }
+
+  /* Budget component*/
+  .budget_component {
+    max-width: 330px;
+    width: 94%;
+  }
+
+  .budget_component:hover .b_edit_icon {
+    visibility: visible;
+  }
+
+  /* Loading */
+  .loading_container {
+    height: calc(100vh - 64px);
+  }
+
+  /* Transactions */
+  .history_item {
+    font-size: 14px;
+  }
+
+  .tDate {
+    width: 90px;
+  }
+
+  .tAmount {
+    width: 46px;
+  }
+
+
+  /* Settings */
+  .settings_container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .settings_section {
+    box-shadow: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 2px; 
+  }
+
+  .settings_content {
+    flex-direction: column;
+  }
+
+  .message_handling {
+    margin-left: 0;
+    justify-content: left;
+  }
+
+  .change_password .message_handling {
+    padding-bottom: 0;
+    padding-top: 13px;
+  }
+
+  .delete_prompt form {
+    width: 185px;
+  }
+
+  .delete_prompt input {
+    display: block;
+    margin-left: 0;
+    margin-top: 7px;
+  }
+}
